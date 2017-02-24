@@ -1,0 +1,75 @@
+1.Cluster:
+   * A Cluster is a group of similar items or elements occuring closely together
+
+  Hadoop Cluster:
+
+   * A Hadoop cluster is essentially a computational cluster that distributes the data analysis workload across multiple cluster nodes that work to process the data in parallel.
+   * It is designed for storing and analyzing huge amount of unstructured data in a distributed computing environment
+   * Hadoop cluster are known for boosting the speed of data analysis applications
+   * Hadoop clusters are often referred to as "shared nothing" systems because the only thing that is shared between nodes is the network that connects them 
+   * If a cluster processing power is overwhelmed by growing volumes of data ,additional nodes can be added to increase throuput
+   * Users of hadoop cluster are facebook,google,ibm,etc
+   * Benefit:
+        - Analysing big data
+        - Scalability
+        - Parallel processing
+        - highly resistant to failure 
+   * Hadoop cluster has 3 components:
+        1 Client
+        2 Master
+        3 Slave
+   * Client:
+        - Client is neither master nor slave,
+        - It play a role of loading the data into cluster,
+        - submit MapReduce jobs describing how the data should be processed and then retrieve the data to see the response after job completion
+   * Masters:
+        - The Masters consists of 3 components
+             NameNode, Secondary Node name and JobTracker
+        * NameNode
+             NameNode does NOT store the files but only the file's metadata
+        * JobTracker
+             JobTracker coordinates the parallel processing of data using MapReduce
+        * Secondary Name Node
+             Secondary Node is NOT the backup or high availability node for Name node.
+   * Slaves
+        - Slave nodes are the majority of machines in Hadoop Cluster and are responsible to
+              ->Store the data
+              ->Process the computation
+2.Component of Hadoop 1.x
+
+    * Hadoop System is a Master-Slave architecture
+    *  Hadoop 1.x file system has 64 MB block size
+    * The default replication factor in Hadoop is 3
+    * There are total 5 components in Hadoop 1.x architecture
+      - Name Node (NN)
+      - Data Node (DN)
+      - Secondary Name Node (SNN)
+      - Job Tracker (JT)
+      - Task Tracker (TT)
+    * Name Node, Data Node and Secondary Name Node are called as Storage components in Hadoop
+    * Job Tracker and Task Tracker are called as Processing components in Hadoop
+    * Name node is a Master Node in Hadoop
+    * Data Node is the slave nodes in Hadoop.
+    * Master Node's MR component is called as Job Tracker
+    * Slave Node's MR component is called as Task Tracker.
+    * Namenode:
+       - Name node decide how to store the phisical location of ech and every file in blocks in the cluster
+       - It also manages the metadata of the files stored in data nodes
+       - It always stores the metadata in FSImage and EditLogs file at regular intervals
+       - This process is called as checkpoint mechanisum
+    * Datanode:
+       - Data node will store the file data in blocks, as per the instructions from Name node
+       - Data node will send the RPC signal at regular interval, to notify the Name node that it is alive and working
+       - Data node is also called as Heart beat mechanism
+    * Secondary name node:
+       - Secondary Name node acts as a backup for Name node
+       - It stores the meta data information from Name node at regular interval as per checkpoint mechanism
+    * Job Tracker:
+       - Job Tracker most of the times resides in the same node as of Name Node
+       - It's job is to assign the task to the Data nodes/Task trackers
+       - It also decides the job scheduling for the data nodes/Task trackers
+       - In case of Job failure, Job tracker decides about the rescheduling of the task on some other nodes
+       - Job Tracker is also called as Single Point of Failure ( SPOF)
+    * Task Tracker:
+       - Its job is to execute the task assigned by job tracker
+  
